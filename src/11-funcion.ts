@@ -6,10 +6,10 @@ type Genero = 'Hombre' | 'Mujer';
 function crearProducto(
   nombre: string,
   costo: number,
-  createdAt: Date,
   genero: Genero,
-  talla?: Sizes,
-  stock?: number | null
+  talla: Sizes,
+  stock: number | null,
+  createdAt: Date
 ) {
   return {
     nombre,
@@ -17,29 +17,86 @@ function crearProducto(
     genero,
     talla,
     stock,
-    createdAt,
+    createdAt
   };
 }
-var Producto1 = crearProducto(
-  'Zapato Deportivo',
+
+const producto1 = crearProducto("zapato deportivo", 70, "Hombre", "XL", null, new Date('02/02/93'));
+console.log(typeof (producto1));
+console.log(producto1);
+console.log(producto1.createdAt);
+
+// Argumentos opcionales
+
+function crearProducto1(
+  nombre: string,
+  costo: number,
+  createdAt: Date,
+  genero: Genero,
+  talla?: Sizes,
+  stock?: number | null
+
+) {
+  return {
+    nombre,
+    costo,
+    createdAt,
+    genero,
+    talla,
+    stock
+  };
+}
+
+const producto2 = crearProducto1(
+  'zapatos deportivos',
   70,
   new Date('02/02/93'),
-  'Mujer',
-  'XL',
+  'Hombre',
+  'M',
   null
 );
 
-console.log(Producto1);
-console.log(Producto1.createdAt);
+console.log(typeof (producto2));
+console.log(producto2);
+console.log(producto2.createdAt);
 
-// ARGUMENTOS OPCIONALES
+// RETORNO EN LAS FUNCIONES
 
-const Producto2 = crearProducto(
-  'Zapato 2',
-  80,
-  new Date('02/02/94'),
-  'Mujer',
-);
+// FUNCIONES TIPO VOID
 
-console.log(Producto2);
-console.log(Producto2.createdAt);
+function imprimirNombre(
+  yourName: string): void {
+  console.log(`Bienvenido ${yourName} a TS`);
+}
+imprimirNombre("JOSE");
+
+// FUNCIONES CON RETORNO
+let resultado = 0;
+
+function operacion1(
+  a: number,
+  b: number): number {
+  return resultado = a + b;
+}
+
+let ejemploFuncion = console.log(operacion1(45 ,50));
+
+// FUNCIONES CON VARIOS RETORNOS
+
+function clasificador(
+  a:number,
+  b:number,
+  c:number): number | string
+  {
+    if (a>b && a>c) {
+      return a;
+    } else if (b>a && b>c) {
+      return b;
+    } else if (c>a && c>b){
+      return c;
+    } else{
+      return "Los numeros son iguales"
+    }
+  };
+
+  let clasificador1 = console.log(clasificador(6,6,6));
